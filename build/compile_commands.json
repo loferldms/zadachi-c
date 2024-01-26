@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/Egor/Desktop/ci/zadacha2/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe   -g -o CMakeFiles\\testy.dir\\main.c.obj -c C:\\Users\\Egor\\Desktop\\ci\\zadacha2\\main.c",
+  "file": "C:/Users/Egor/Desktop/ci/zadacha2/main.c",
+  "output": "CMakeFiles/testy.dir/main.c.obj"
+},
+{
+  "directory": "C:/Users/Egor/Desktop/ci/zadacha2/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe   -g -o CMakeFiles\\testy.dir\\src\\foo.c.obj -c C:\\Users\\Egor\\Desktop\\ci\\zadacha2\\src\\foo.c",
+  "file": "C:/Users/Egor/Desktop/ci/zadacha2/src/foo.c",
+  "output": "CMakeFiles/testy.dir/src/foo.c.obj"
+}
+]

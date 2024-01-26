@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\testy.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\testy.dir/objects.a @CMakeFiles\testy.dir\objects1.rsp
+C:\msys64\ucrt64\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\testy.dir/objects.a -Wl,--no-whole-archive -o testy.exe -Wl,--out-implib,libtesty.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\testy.dir\linkLibs.rsp
