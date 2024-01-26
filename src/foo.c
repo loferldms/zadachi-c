@@ -58,7 +58,7 @@ void Counter_number(int *counter, int number){
 
 //Определение является ли цифра больше 9
 bool Check_number(chisl *head_summ_check){
-    if (head_summ_check->razr1 == 0 ){
+    if (head_summ_check->razr1 == 3 ){
         return true;
     }
     else{return false;}
@@ -69,11 +69,11 @@ void Pop_checker(Tcheck ch){
     bool ret = ch(head_summ);
     if (ret==true){
     Pop(&head_summ);
-    printf(" !(filtered out) ");
+    printf("#");
     }
     else if (ret==false) {
-        printf("%i", head_summ->razr1);   
-        head_summ = head_summ->next;
+        printf("%i", head_summ->razr1); 
+        Pop(&head_summ);
     }
 }
 
@@ -114,7 +114,7 @@ void Razlojeniye(void)
     printf("Summ chisel\n");
     while (head_summ)
     {
-        Pop_checker(Check_number); 
+        Pop_checker(Check_number);
     }
     printf("\n");    
 }
@@ -137,12 +137,13 @@ void Slojenie(void)
         if (head1 == NULL && head2)
         {
             Summ_void_title(head2, &head_summ);
-            head2 = head2->next;
+            Pop(&head2);
+            
         }
         else if (head2 == NULL && head1)
         {
             Summ_void_title(head1, &head_summ);
-            head1 = head1->next;
+            Pop(&head1);
         }
         else
         {
@@ -155,8 +156,7 @@ void Slojenie(void)
                 sum = sum%10;
                 ostatok = 1;
             }
-            head1 = head1->next;
-            head2 = head2->next;
+            Pop(&head1); Pop(&head2);
             Path(&head_summ, sum);  
         } 
         }
