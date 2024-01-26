@@ -56,6 +56,8 @@ CMakeFiles/testy.dir/src/foo.c.obj: C:/Users/Egor/Desktop/ci/zadacha2/src/foo.c 
   C:/msys64/ucrt64/include/sec_api/stdio_s.h \
   C:/msys64/ucrt64/include/sec_api/stdlib_s.h \
   C:/msys64/ucrt64/include/sec_api/string_s.h \
+  C:/msys64/ucrt64/include/stddef.h \
+  C:/msys64/ucrt64/include/stdint.h \
   C:/msys64/ucrt64/include/stdio.h \
   C:/msys64/ucrt64/include/stdlib.h \
   C:/msys64/ucrt64/include/string.h \
@@ -66,6 +68,8 @@ CMakeFiles/testy.dir/src/foo.c.obj: C:/Users/Egor/Desktop/ci/zadacha2/src/foo.c 
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/limits.h \
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mm_malloc.h \
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdbool.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stddef.h \
+  C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdint.h \
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/syslimits.h
 
 
@@ -84,6 +88,8 @@ C:/msys64/ucrt64/include/_mingw.h:
 C:/msys64/ucrt64/include/string.h:
 
 C:/msys64/ucrt64/include/_mingw_mac.h:
+
+C:/msys64/ucrt64/include/stddef.h:
 
 C:/msys64/ucrt64/include/stdlib.h:
 
@@ -136,3 +142,9 @@ C:/msys64/ucrt64/include/unistd.h:
 C:/msys64/ucrt64/include/vadefs.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/limits.h:
+
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stddef.h:
+
+C:/msys64/ucrt64/include/stdint.h:
+
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdint.h:

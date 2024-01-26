@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -7,7 +8,7 @@
 
 typedef struct chisl
 {
-    int razr1;
+    uint8_t razr1;
     struct chisl *next;
 }chisl;
 chisl *head1 = NULL;
@@ -18,7 +19,7 @@ chisl *head_summ = NULL;
 typedef bool (*Tcheck) (chisl*);
 
 //Добавление новых узлов списка
-void Path(chisl **head, int chislo){  
+void Path(chisl **head, uint32_t chislo){  
     chisl*tmp = ( chisl*) malloc(sizeof( chisl));
     tmp->razr1 = chislo;
     tmp->next = *head;
@@ -26,7 +27,7 @@ void Path(chisl **head, int chislo){
 }
 
 //Ввод чисел
-void Insert_numbers(int *number){
+void Insert_numbers(uint32_t *number){
     printf("number: \n");
     scanf("%i", &(*number));
     printf("chisl %i\n", (*number));
@@ -35,8 +36,8 @@ void Insert_numbers(int *number){
 }
 
 // Переворот числа
-int Flip(int flip_num){
-    int rev=0,rem = 0;
+int Flip(uint32_t flip_num){
+    uint32_t rev=0,rem = 0;
     while(flip_num>0)
     {
     rem=flip_num%10; 
@@ -48,7 +49,7 @@ int Flip(int flip_num){
 
 
 //Заполнение счетчиков
-void Counter_number(int *counter, int number){
+void Counter_number(uint8_t *counter, uint32_t number){
     while(number != 0)       
     {
         number = number / 10;
@@ -89,10 +90,10 @@ void Pop(chisl **head) {
 }
 
 //Разложение на цифры и запись в список
-void Decomposition(int counter, int number,chisl **head){
-for( int i = 0 ; i<(counter) ;i++)
+void Decomposition(uint8_t counter, uint32_t number,chisl **head){
+for( uint8_t i = 0 ; i<(counter) ;i++)
     {
-        int number_number;
+        uint8_t number_number;
         number_number = (number)%10;      
         number = (number) / 10; 
         Path(head, number_number); 
@@ -103,7 +104,8 @@ for( int i = 0 ; i<(counter) ;i++)
 //Разложение целого числа на цифры, по разрядам
 void Razlojeniye(void)
 {
-    int counter_one=0, counter_two=0, number_one =0, number_two = 0;
+    uint8_t counter_one=0, counter_two=0;
+    uint32_t number_one =0, number_two = 0;
     Insert_numbers(&number_one);
     Insert_numbers(&number_two);
     Counter_number(&counter_one, number_one); 
@@ -121,7 +123,7 @@ void Razlojeniye(void)
 
 //Сумма с пустым списком
 void Summ_void_title(chisl *head, chisl **summ){
-    int sum = 0;
+    uint8_t sum = 0;
     sum = 0 + head->razr1;   
     Path(summ, sum);
 }
@@ -130,8 +132,8 @@ void Summ_void_title(chisl *head, chisl **summ){
 void Slojenie(void)
 {
     
-    int sum = 0;
-    int ostatok = 0;
+    uint8_t sum = 0;
+    uint8_t ostatok = 0;
     while (head1 || head2)
     {
         if (head1 == NULL && head2)
