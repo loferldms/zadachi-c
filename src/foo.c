@@ -6,20 +6,40 @@
 #include <stdbool.h>
 #include "..\inc/foo.h"
 
-typedef struct chisl
+/*Объявление структуры*/
+typedef struct chisl 
 {
     uint8_t razr1;
     struct chisl *next;
 }chisl;
+
+/*Объявление указателей на структуру*/
 chisl *head1 = NULL;
 chisl *head2 = NULL;
 chisl *head_summ = NULL;
 
+/*---------создание ссылки на функцию-----------*/
+typedef static bool (*Tcheck) (chisl*);
 
-typedef bool (*Tcheck) (chisl*);
+/*--------------Объявление-функций--------------------*/
+static void Slojenie(void);
+static void Path(chisl **head, uint32_t chislo);
+static void Insert_numbers(uint32_t *number);
+static int Flip(uint32_t flip_num);
+static void Counter_number(uint8_t *counter, uint32_t number);
+static bool Check_number(chisl *head_summ_check);
+static void Pop_checker(Tcheck ch);
+static void Pop(chisl **head);
+static void Decomposition(uint8_t counter, uint32_t number,chisl **head);
+void Razlojeniye(void);
+static void Summ_void_title(chisl *head, chisl **summ);
 
-//Добавление новых узлов списка
-void Path(chisl **head, uint32_t chislo){  
+
+//Функция добавления новых узлов списка
+//Принимает в себя двойной указатель на структуру (**head)
+//и цифру (chislo) в виде одного разряда вводимого числа
+//ничего не возвращает
+static void Path(chisl **head, uint32_t chislo){  
     chisl*tmp = ( chisl*) malloc(sizeof( chisl));
     tmp->razr1 = chislo;
     tmp->next = *head;
@@ -27,7 +47,7 @@ void Path(chisl **head, uint32_t chislo){
 }
 
 //Ввод чисел
-void Insert_numbers(uint32_t *number){
+static void Insert_numbers(uint32_t *number){
     printf("number: \n");
     scanf("%i", &(*number));
     printf("chisl %i\n", (*number));
@@ -36,7 +56,7 @@ void Insert_numbers(uint32_t *number){
 }
 
 // Переворот числа
-int Flip(uint32_t flip_num){
+static int Flip(uint32_t flip_num){
     uint32_t rev=0,rem = 0;
     while(flip_num>0)
     {
@@ -49,7 +69,7 @@ int Flip(uint32_t flip_num){
 
 
 //Заполнение счетчиков
-void Counter_number(uint8_t *counter, uint32_t number){
+static void Counter_number(uint8_t *counter, uint32_t number){
     while(number != 0)       
     {
         number = number / 10;
@@ -58,7 +78,7 @@ void Counter_number(uint8_t *counter, uint32_t number){
 }
 
 //Определение является ли цифра больше 9
-bool Check_number(chisl *head_summ_check){
+static bool Check_number(chisl *head_summ_check){
     if (head_summ_check->razr1 == 3 ){
         return true;
     }
@@ -66,7 +86,7 @@ bool Check_number(chisl *head_summ_check){
 }
 
 //Выборка узлов списка
-void Pop_checker(Tcheck ch){
+static void Pop_checker(Tcheck ch){
     bool ret = ch(head_summ);
     if (ret==true){
     Pop(&head_summ);
@@ -79,7 +99,7 @@ void Pop_checker(Tcheck ch){
 }
 
 //Удаление узла списка
-void Pop(chisl **head) {
+static void Pop(chisl **head) {
     chisl* prev = NULL;
     if (head == NULL) {
         exit(-1);
@@ -90,7 +110,7 @@ void Pop(chisl **head) {
 }
 
 //Разложение на цифры и запись в список
-void Decomposition(uint8_t counter, uint32_t number,chisl **head){
+static void Decomposition(uint8_t counter, uint32_t number,chisl **head){
 for( uint8_t i = 0 ; i<(counter) ;i++)
     {
         uint8_t number_number;
@@ -122,14 +142,14 @@ void Razlojeniye(void)
 }
 
 //Сумма с пустым списком
-void Summ_void_title(chisl *head, chisl **summ){
+static void Summ_void_title(chisl *head, chisl **summ){
     uint8_t sum = 0;
     sum = 0 + head->razr1;   
     Path(summ, sum);
 }
 
 //Сложение разрядов из списков и запись в новый список
-void Slojenie(void)
+static void Slojenie(void)
 {
     
     uint8_t sum = 0;
