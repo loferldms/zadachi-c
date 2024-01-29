@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/Egor/Desktop/ci/tree/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe   -g -o CMakeFiles\\tree.dir\\main.c.obj -c C:\\Users\\Egor\\Desktop\\ci\\tree\\main.c",
+  "file": "C:/Users/Egor/Desktop/ci/tree/main.c",
+  "output": "CMakeFiles/tree.dir/main.c.obj"
+},
+{
+  "directory": "C:/Users/Egor/Desktop/ci/tree/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe   -g -o CMakeFiles\\tree.dir\\src\\foo.c.obj -c C:\\Users\\Egor\\Desktop\\ci\\tree\\src\\foo.c",
+  "file": "C:/Users/Egor/Desktop/ci/tree/src/foo.c",
+  "output": "CMakeFiles/tree.dir/src/foo.c.obj"
+}
+]

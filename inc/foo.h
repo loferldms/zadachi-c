@@ -1,0 +1,1 @@
+void Main_foo(void);
