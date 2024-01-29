@@ -19,7 +19,7 @@ chisl *head2 = NULL;
 chisl *head_summ = NULL;
 
 //@brief: создание ссылки на функцию
-typedef static bool (*Tcheck) (chisl*);
+typedef bool (*Tcheck) (chisl*);
 
 //@brief: Объявление-функций
 static void Slojenie(void);
