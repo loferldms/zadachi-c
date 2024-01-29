@@ -6,22 +6,22 @@
 #include <stdbool.h>
 #include "..\inc/foo.h"
 
-/*Объявление структуры*/
+//@brief: Объявление структуры
 typedef struct chisl 
 {
     uint8_t razr1;
     struct chisl *next;
 }chisl;
 
-/*Объявление указателей на структуру*/
+//@brief: Объявление указателей на структуру
 chisl *head1 = NULL;
 chisl *head2 = NULL;
 chisl *head_summ = NULL;
 
-/*---------создание ссылки на функцию-----------*/
+//@brief: создание ссылки на функцию
 typedef static bool (*Tcheck) (chisl*);
 
-/*--------------Объявление-функций--------------------*/
+//@brief: Объявление-функций
 static void Slojenie(void);
 static void Path(chisl **head, uint32_t chislo);
 static void Insert_numbers(uint32_t *number);
@@ -35,10 +35,10 @@ void Razlojeniye(void);
 static void Summ_void_title(chisl *head, chisl **summ);
 
 
-//Функция добавления новых узлов списка
-//Принимает в себя двойной указатель на структуру (**head)
-//и цифру (chislo) в виде одного разряда вводимого числа
-//ничего не возвращает
+//@brief: Функция добавления новых узлов списка
+//@param: **head двойной указатель на структуру
+//@param: chislo разряд числа
+//@param: *tmp указатель на структуру
 static void Path(chisl **head, uint32_t chislo){  
     chisl*tmp = ( chisl*) malloc(sizeof( chisl));
     tmp->razr1 = chislo;
@@ -46,7 +46,8 @@ static void Path(chisl **head, uint32_t chislo){
     (*head) = tmp;
 }
 
-//Ввод чисел
+//@brief: функция вывода сообщения и приема числа из консоли
+//@param: *number указатель на число
 static void Insert_numbers(uint32_t *number){
     printf("number: \n");
     scanf("%i", &(*number));
@@ -55,7 +56,9 @@ static void Insert_numbers(uint32_t *number){
     (*number) = Flip(n);
 }
 
-// Переворот числа
+//@brief: функция переворачивает число и возвращает его
+//@param: flip_num число для переворота
+//@param: rev конечный результат
 static int Flip(uint32_t flip_num){
     uint32_t rev=0,rem = 0;
     while(flip_num>0)
@@ -67,8 +70,9 @@ static int Flip(uint32_t flip_num){
     return rev;
 }
 
-
-//Заполнение счетчиков
+//@brief: функция заполнения счетчика количества цифр в числе
+//@param: *counter указатель на счетчик
+//@param: number число для подсчета цифр в нем
 static void Counter_number(uint8_t *counter, uint32_t number){
     while(number != 0)       
     {
@@ -77,7 +81,8 @@ static void Counter_number(uint8_t *counter, uint32_t number){
     } 
 }
 
-//Определение является ли цифра больше 9
+//@brief: функция проверки цифры из узла структуры
+//@param: *head_summ_check указатель на структуру
 static bool Check_number(chisl *head_summ_check){
     if (head_summ_check->razr1 == 3 ){
         return true;
@@ -85,7 +90,8 @@ static bool Check_number(chisl *head_summ_check){
     else{return false;}
 }
 
-//Выборка узлов списка
+//@brief: функция фильтрации цифр из узла структуры
+//@param: ch указатель на функцию Check_number
 static void Pop_checker(Tcheck ch){
     bool ret = ch(head_summ);
     if (ret==true){
@@ -98,7 +104,9 @@ static void Pop_checker(Tcheck ch){
     }
 }
 
-//Удаление узла списка
+//@brief: функция удаления узла из списка
+//@param: **head двойной указатель на структуру
+//@param: *prev указатель на структуру
 static void Pop(chisl **head) {
     chisl* prev = NULL;
     if (head == NULL) {
@@ -109,7 +117,10 @@ static void Pop(chisl **head) {
     free(prev);
 }
 
-//Разложение на цифры и запись в список
+//@brief: функция декомпозиции числа на цифры и их запись в узлы структуры
+//@param: counter счетчик цифр в числе
+//@param: number введенное число
+//@param: **head двойной указатель на структуру
 static void Decomposition(uint8_t counter, uint32_t number,chisl **head){
 for( uint8_t i = 0 ; i<(counter) ;i++)
     {
@@ -121,7 +132,11 @@ for( uint8_t i = 0 ; i<(counter) ;i++)
     }
 }
 
-//Разложение целого числа на цифры, по разрядам
+//@brief: основная функция вызова остальных функций
+//@param: counter_one счетчик первого числа
+//@param: counter_two счетчик второго числа
+//@param: number_one первое число
+//@param: number_two второе число
 void Razlojeniye(void)
 {
     uint8_t counter_one=0, counter_two=0;
@@ -141,14 +156,18 @@ void Razlojeniye(void)
     printf("\n");    
 }
 
-//Сумма с пустым списком
+//@brief: функция сложения цифр из узлов чисел если одна из цифр равна 0
+//@param: *head указатель на структуру
+//@param: **summ двойной указатель на функцию
 static void Summ_void_title(chisl *head, chisl **summ){
     uint8_t sum = 0;
     sum = 0 + head->razr1;   
     Path(summ, sum);
 }
 
-//Сложение разрядов из списков и запись в новый список
+//@brief: функция сложения и записи в узлы структуры суммы цифр
+//@param: sum сумма чисел
+//@param: ostatok остаток от сложения для переноса в следующий разряд
 static void Slojenie(void)
 {
     
