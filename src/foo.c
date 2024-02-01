@@ -6,9 +6,7 @@
 //@brief: Объявленние структур
 typedef struct tree
 {
-    uint8_t id;
     uint32_t data;
-    struct tree*parent;
     struct tree*left;
     struct tree*right;
 }Tree;
@@ -66,8 +64,6 @@ static Tree *CreateNode(uint32_t data){
         exit(1);
     }
     newNode->data = data;
-    newNode->id = 0;
-    newNode->parent = NULL;
     newNode->left = NULL;
     newNode->right = NULL;
     return newNode;
@@ -84,8 +80,7 @@ static void Push(Tree **tree, uint32_t data){
     }
     else if (data < tmp->data){
         if (tmp->left == NULL){
-            tmp->left = newNode;
-            newNode->parent = tmp;
+            tmp->left = newNode;        ////тут нужно запихивать в списки
         }else{
             Push(&(tmp->left), data);
         }
@@ -93,7 +88,6 @@ static void Push(Tree **tree, uint32_t data){
     else if (data > tmp->data){
         if (tmp->right == NULL){
             tmp->right = newNode;
-            newNode->parent = tmp;
         }else{
             Push(&(tmp->right), data);
         }
@@ -112,13 +106,16 @@ static int Max(Tree *tree, uint8_t max_right, uint8_t max_left){
     if (newNode == NULL){
         return;
     }
-    max_right = newNode->id;
+    max_left-=1;
     if(newNode->right!=NULL){        
        max_right = Max(newNode->right, max_right, max_left);
+       max_right++;
+       
     }
-    max_left = newNode->id;
+    max_right-=1;
     if( newNode->left!=NULL){
         max_left = Max(newNode->left, max_right, max_left);
+        max_left++;
     }
     if (max_left > max_right)
     {max = max_left;}
@@ -134,15 +131,11 @@ static void PrintfNode(Tree *tree, uint8_t id_fu){
         return;
     }
     else{
-        tree->id = id_fu;
-        printf("data - %i, id - %i\n", tree->data, tree->id);
+        printf("data - %i\n", tree->data);
         if(tree->left != NULL){
-            id_fu ++;
             PrintfNode(tree->left, id_fu);
         }
-        id_fu -= 1;
         if (tree->right != NULL){
-            id_fu ++;
             PrintfNode(tree->right, id_fu);
         }
     }
@@ -158,7 +151,7 @@ static void Input_nubers(Tree *tree, uint8_t id_fu,List_Of_Leveles *head, uint8_
         return;
     }
     else{
-        if(tree->id == max){
+        if(id_fu == max){
             head->node = Path_Counter(&head->node, tree);
         }
         if(tree->left != NULL){
@@ -219,7 +212,7 @@ void Main_foo(void){
     printf("Max - %i", max);
     for (uint8_t i = 0; i <= max; i++){
         Path(&head);
-        Input_nubers(tree, 0, head, i); 
+        Input_nubers(tree, 0, head, i);
     }
     printf ("\n");
     Return_numbers_from_list(head);
