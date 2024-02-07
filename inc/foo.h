@@ -1,1 +1,1 @@
-void Main_foo(void);
+void Foo_call(void);

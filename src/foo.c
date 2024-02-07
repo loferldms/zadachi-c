@@ -5,8 +5,7 @@
 
 
 //@brief: Объявленние структур
-typedef struct tree
-{
+typedef struct tree{
     uint32_t data;
     struct tree*left;
     struct tree*right;
@@ -22,13 +21,12 @@ typedef struct list_of_leveles{
 
 
 //@brief: Объявление функций
-void Main_foo(void);
-static Tree *CreateNode(uint32_t data);
+void Foo_call(void);
+static Tree *Create_node(uint32_t data);
 static void Push(Tree **tree, uint32_t data, List_Of_Leveles *head, List_Of_Count *node);
 static void Path(List_Of_Leveles **head);
 static void Path_Counter(List_Of_Count **node, Tree *tree);
-static int Max(Tree *tree, uint8_t max_right, uint8_t max_left);
-static void PrintfNode(Tree *tree);
+static void Printf_node(Tree *tree);
 static void Input_nubers(Tree *tree, uint8_t id_fu,List_Of_Leveles *head, uint8_t max);
 static int Input(void);
 void Return_numbers_from_list(List_Of_Leveles *head);
@@ -57,7 +55,7 @@ static void Path_Counter(List_Of_Count **node, Tree *tree){
 
 //@brief: функция добавления новых ветвей древа
 //@param: data число вводимое в консоль
-static Tree *CreateNode(uint32_t data){
+static Tree *Create_node(uint32_t data){
     Tree *newNode = (Tree*)malloc(sizeof(Tree));
     if (newNode == NULL){
         printf("Malloc returned NULL\n");
@@ -73,14 +71,14 @@ static Tree *CreateNode(uint32_t data){
 //@param: **tree двойной указатель на структуру
 //@param: data число вводимое в консоль
 static void Push(Tree **tree, uint32_t data, List_Of_Leveles *head, List_Of_Count *node){
-    Tree *newNode = CreateNode(data);
+    Tree *newNode = Create_node(data);
     Tree *tmp = *tree;
     if(tmp == NULL){
         *tree = newNode;
     }
     else if (data < tmp->data){
         if (tmp->left == NULL){
-            tmp->left = newNode;        ////тут нужно запихивать в списки
+            tmp->left = newNode;        
         }else{
             Push(&(tmp->left), data, head, node);
         }
@@ -140,17 +138,17 @@ List_Of_Leveles *Insert_in_to_list(List_Of_Leveles *head, List_Of_Count *node, T
 //@brief: функция вывода значений из древа обходом в глубину
 //@param: *tree указатель на структуру
 //@param: id_fu глубина элемента
-static void PrintfNode(Tree *tree){
+static void Printf_node(Tree *tree){
     if (tree == NULL){
         return;
     }
     else{
         printf("data - %i\n", tree->data);
         if(tree->left != NULL){
-            PrintfNode(tree->left);
+            Printf_node(tree->left);
         }
         if (tree->right != NULL){
-            PrintfNode(tree->right);
+            Printf_node(tree->right);
         }
     }
 }
@@ -181,8 +179,9 @@ void Return_numbers_from_list(List_Of_Leveles *head){
     }
 }
 
+
 //@brief: основная функция вызова функций и объявления переменных
-void Main_foo(void){
+void Foo_call(void){
     uint8_t id_fu = 0;
     uint8_t n;
     Tree *tree = NULL;
@@ -198,9 +197,8 @@ void Main_foo(void){
        Push(&tree, array[i], head, node);
     }
     printf("end.\n");
-    PrintfNode(tree);
+    Printf_node(tree);
     head = Insert_in_to_list(head,node,tree);
     printf ("\n");
-    Return_numbers_from_list(head);
-    
+    Return_numbers_from_list(head); 
 }
