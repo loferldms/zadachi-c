@@ -95,6 +95,10 @@ static void Push(Tree **tree, uint32_t data, List_Of_Leveles *head, List_Of_Coun
     
 }
 
+//@brief: функция обхода дерева в ширину и запись в списки
+//@param: *head указатель на структуру
+//@param: *node указатель на структуру
+//@param: *tree указатель на структуру
 List_Of_Leveles *Insert_in_to_list(List_Of_Leveles *head, List_Of_Count *node, Tree *tree){
     Tree *newNode = tree;
     List_Of_Leveles *Sklad = NULL;
@@ -105,7 +109,8 @@ List_Of_Leveles *Insert_in_to_list(List_Of_Leveles *head, List_Of_Count *node, T
     } 
     List_Of_Leveles *head_one = NULL;
     while (head != NULL){
-        head_one = head;
+        Path(&head_one);
+        head_one->node = head->node;
         Path(&head);
         while (head_one->node != NULL){
             if (head_one->node->tree_node->left !=NULL){
